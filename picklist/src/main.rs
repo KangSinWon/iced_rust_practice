@@ -1,4 +1,4 @@
-use iced::widget::{column, container, pick_list, scrollable, vertical_space};
+use iced::widget::{container, pick_list, scrollable, vertical_space, Column, Text};
 use iced::{Alignment, Element, Length, Sandbox, Settings};
 
 use std::fmt::Formatter;
@@ -44,15 +44,17 @@ impl Sandbox for Picklist {
         )
         .placeholder("Choose a language...");
 
-        let content = column![
-            // vertical_space(600),
-            "Which is your favorite language?",
-            pick_list,
-            // vertical_space(600),
-        ]
-        .width(Length::Fill)
-        .align_items(Alignment::Center)
-        .spacing(10);
+        let label = match self.selected_language {
+            None => Text::new(format!("Which is your favorite language?")),
+            Some(lang) => Text::new(format!("Which is your favorite language? {}", lang)),
+        };
+
+        let content = Column::new()
+            .push(label)
+            .push(pick_list)
+            .width(Length::Fill)
+            .align_items(Alignment::Center)
+            .spacing(10);
 
         container(content)
             .width(Length::Fill)
@@ -96,7 +98,7 @@ impl std::fmt::Display for Language {
                 Language::Ruby => "Ruby",
                 Language::Cpp => "Cpp",
                 Language::Javascript => "Javascript",
-                Language::Other => "Some other language",
+                Language::Other => "???",
             }
         )
     }

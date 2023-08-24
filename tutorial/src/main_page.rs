@@ -1,7 +1,10 @@
-use iced::{pure::{
-    widget::{Container, Text},
-    Element,
-}, Length};
+use iced::{
+    pure::{
+        widget::{Container, Text},
+        Element,
+    },
+    Length,
+};
 
 use crate::CounterMessage;
 
