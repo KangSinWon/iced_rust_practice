@@ -29,14 +29,17 @@ impl Application for CheckBox {
     type Theme = Theme;
 
     fn new(flags: Self::Flags) -> (Self, Command<Self::Message>) {
+        println!("call new func");
         (Self::default(), Command::none())
     }
 
     fn title(&self) -> String {
+        println!("call title func");
         String::from("Checkbox - Iced")
     }
 
     fn update(&mut self, message: Self::Message) -> Command<Self::Message> {
+        println!("call update func");
         match message {
             Message::DefaultChecked(val) => self.default_checkbox = val,
             Message::CustomChecked(val) => self.custom_checkbox = val,
@@ -46,6 +49,7 @@ impl Application for CheckBox {
     }
 
     fn view(&self) -> Element<Self::Message> {
+        println!("call view func");
         let default_checkbox = checkbox("default", self.default_checkbox, Message::DefaultChecked);
         let custom_checkbox = checkbox("custom", self.custom_checkbox, Message::CustomChecked);
 
